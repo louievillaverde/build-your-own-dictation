@@ -4,7 +4,7 @@ A native macOS dictation app written in Swift. Hold a key, talk, let go, and you
 
 It works with no account at all, and if you add your own API keys, they're your accounts and nobody else's.
 
-**The full guide:** [leadpiranha.com/free/dictation-app](https://www.leadpiranha.com/free/dictation-app)
+**The full guide:** [leadpiranha.com/guides/dictation-app](https://www.leadpiranha.com/guides/dictation-app)
 
 ## What it does
 
