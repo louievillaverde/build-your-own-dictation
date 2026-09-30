@@ -28,16 +28,15 @@ It works with no account at all, and if you add your own API keys, they're your 
 Paste this into your AI coding tool. If you have a Deepgram key, put it where it says MY_KEY_HERE. If you don't, leave it and you'll get Apple's speech. You'll approve a couple of permission pop-ups (Microphone and Accessibility) along the way.
 
 ```
-Set up the Dictation app on my Mac from https://github.com/louievillaverde/build-your-own-dictation. It's a native macOS dictation app written in Swift. Do every step yourself, and only stop when you need me to click something.
+Set up the Dictation app on my Mac from https://github.com/louievillaverde/build-your-own-dictation. Do every step yourself and only stop when you need me to click something.
 
-1. Clone it into ~/dictation. Read the README, build.sh and the Sources folder first.
-2. Check that the Xcode command line tools are installed (xcode-select -p). If they aren't, run xcode-select --install and wait for me to finish the installer.
+1. Clone it to ~/dictation and read the README.
+2. Make sure the Xcode command line tools are installed.
 3. My Deepgram key: MY_KEY_HERE
-   If that's a real key, save it as DEEPGRAM_API_KEY=<the key> in ~/.dictation-secrets.env and chmod 600 the file. If it still says MY_KEY_HERE, skip this step. The app will use Apple's on-device speech, which needs no account.
-4. Run ./build.sh. It picks how to sign the app on its own, so don't edit it. If the build fails, fix the cause and run it again until /Applications/Dictation.app is installed.
-5. Open Dictation. As each permission pop-up appears, tell me what to approve: Microphone first, then Accessibility (System Settings > Privacy & Security > Accessibility, switch Dictation on). If macOS asks about Speech Recognition, I'll approve that too. Wait for me to say done after each one.
-6. Once Accessibility is on, quit and reopen Dictation so the hotkey starts working.
-7. Test it: tell me to click into a text box, hold right Option, say a sentence and let go. Then read ~/Library/Application Support/Dictation/debug.log and tell me which engine handled the take and whether it pasted.
+   If that's a real key, save it as DEEPGRAM_API_KEY in ~/.dictation-secrets.env (chmod 600). If not, skip this. The app uses Apple's on-device speech.
+4. Run ./build.sh and fix anything that fails until Dictation.app is installed.
+5. Open Dictation and tell me which permission pop-ups to approve (Microphone and Accessibility, maybe Speech Recognition). Restart it once Accessibility is on.
+6. Have me hold right Option, say a sentence and let go, then confirm it typed.
 ```
 
 ## Build it by hand
