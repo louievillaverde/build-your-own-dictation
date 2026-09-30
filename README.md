@@ -28,14 +28,15 @@ It works with no account at all, and if you add your own API keys, they're your 
 Paste this into your AI coding tool. It offers to set up a free Deepgram key with you; skip it and you'll get Apple's speech. You'll approve a couple of permission pop-ups (Microphone and Accessibility) along the way.
 
 ```
-Set up the Dictation app on my Mac from https://github.com/louievillaverde/build-your-own-dictation. Do every step yourself and only stop when you need me to click something.
+Set up the Dictation app on my Mac from https://github.com/louievillaverde/build-your-own-dictation. Do every step yourself and only stop when you need me to click or choose something.
 
 1. Clone it to ~/dictation and read the README.
 2. Make sure the Xcode command line tools are installed.
-3. Ask me if I want Deepgram for faster, more accurate transcription (free $200 credit, no card). If yes, open https://console.deepgram.com/signup for me, walk me through creating an API key, have me paste it here, and save it as DEEPGRAM_API_KEY in ~/.dictation-secrets.env (chmod 600). If no, skip it. The app uses Apple's on-device speech.
+3. Ask me if I want Deepgram for faster, more accurate transcription (free $200 credit, no card). If yes, open https://console.deepgram.com/signup, walk me through creating an API key, have me paste it here, and save it as DEEPGRAM_API_KEY in ~/.dictation-secrets.env (chmod 600). If no, skip it. The app uses Apple's on-device speech.
 4. Run ./build.sh and fix anything that fails until Dictation.app is installed.
 5. Open Dictation and tell me which permission pop-ups to approve (Microphone and Accessibility, maybe Speech Recognition). Restart it once Accessibility is on.
-6. Have me hold right Option, say a sentence and let go, then confirm it typed.
+6. Set it up the way I like it. Ask me, then set each one in Dictation's Settings (the menu bar icon): which key I hold to talk, whether to pause my music while I talk, which look I want (Deep Water, On Air or Neo Noir), the names and words it should always spell right, and whether it should launch at login.
+7. Have me hold my talk key, say a sentence and let go, then confirm it typed.
 ```
 
 ## Build it by hand
