@@ -31,7 +31,7 @@ Paste this into your AI coding tool. It offers to set up a free Deepgram key wit
 Set up the Dictation app on my Mac from https://github.com/louievillaverde/build-your-own-dictation. Do every step yourself and only stop when you need me to click or choose something.
 
 1. Clone it to ~/dictation and read the README.
-2. Make sure the Xcode command line tools are installed.
+2. Make sure Apple's Command Line Tools are installed (not the full Xcode app). If they aren't, start the install and wait for me to finish it.
 3. Ask me if I want Deepgram for faster, more accurate transcription (free $200 credit, no card). If yes, open https://console.deepgram.com/signup, walk me through creating an API key, have me paste it here, and save it as DEEPGRAM_API_KEY in ~/.dictation-secrets.env (chmod 600). If no, skip it. The app uses Apple's on-device speech.
 4. Run ./build.sh and fix anything that fails until Dictation.app is installed.
 5. Open Dictation and tell me which permission pop-ups to approve (Microphone and Accessibility, maybe Speech Recognition). Restart it once Accessibility is on.
