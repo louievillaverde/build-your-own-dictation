@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>CFBundleIdentifier</key><string>com.example.dictation</string>
+  <key>CFBundleName</key><string>Dictation</string>
+  <key>CFBundleExecutable</key><string>Dictation</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleShortVersionString</key><string>0.1.0</string>
+  <key>CFBundleVersion</key><string>1</string>
+  <key>CFBundleIconFile</key><string>AppIcon</string>
+  <key>LSMinimumSystemVersion</key><string>26.0</string>
+  <key>LSUIElement</key><true/>
+  <key>NSAudioCaptureUsageDescription</key><string>Dictation listens to your browser's sound for a moment to tell whether music is actually playing, so it only pauses what's really on. Nothing is recorded.</string>
+  <key>NSAppleEventsUsageDescription</key><string>Dictation pauses Spotify or Music while you talk, and resumes it when you stop.</string>
+  <key>NSMicrophoneUsageDescription</key><string>Dictation records your voice while you hold the talk key.</string>
+  <key>NSSpeechRecognitionUsageDescription</key><string>Shows your words live while you talk.</string>
+</dict></plist>
