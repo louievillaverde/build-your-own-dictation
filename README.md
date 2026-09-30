@@ -36,7 +36,8 @@ Set up the Dictation app on my Mac from https://github.com/louievillaverde/build
 4. Run ./build.sh and fix anything that fails until Dictation.app is installed.
 5. Open Dictation and tell me which permission pop-ups to approve (Microphone and Accessibility, maybe Speech Recognition). Restart it once Accessibility is on.
 6. Set it up the way I like it. Ask me, then set each one in Dictation's Settings (the menu bar icon): which key I hold to talk, whether to pause my music while I talk, which look I want (Deep Water, On Air or Neo Noir), the names and words it should always spell right, and whether it should launch at login.
-7. Have me hold my talk key, say a sentence and let go, then confirm it typed.
+7. Set up a weekly check (a launchd job) that runs git fetch in ~/dictation and shows me a Mac notification when the repo has updates. Don't install updates automatically.
+8. Have me hold my talk key, say a sentence and let go, then confirm it typed.
 ```
 
 ## Build it by hand
