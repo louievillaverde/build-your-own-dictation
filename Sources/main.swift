@@ -268,7 +268,7 @@ final class Controller: NSObject {
             Paster.paste(spaced)
             if let id { Store.shared.setPasted(id, true) }
             tab.notifyUnpasted(false)
-            overlay.show(.done(text), hideAfter: 1.4)
+            overlay.show(.done(text), hideAfter: readTime(text))
         }
     }
 
@@ -309,8 +309,13 @@ final class Controller: NSObject {
                                 latencyMs: Int(Date().timeIntervalSince(t0) * 1000), pasted: true, audioPath: nil)
             if out == sel { overlay.show(.done("Already clean"), hideAfter: 1.4); return }
             Paster.paste(out) // the selection is still active, so this replaces it
-            overlay.show(.done(out), hideAfter: 1.4)
+            overlay.show(.done(out), hideAfter: readTime(out))
         }
+    }
+
+    /// How long the result bubble stays: enough to read it, growing with length.
+    private func readTime(_ text: String) -> Double {
+        min(3.5, max(1.4, 1.0 + Double(text.count) * 0.025))
     }
 
     func pasteLast() {

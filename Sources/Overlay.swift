@@ -58,8 +58,10 @@ struct PillView: View {
                     .background(
                         EmptyView()
                     )
+                    // Out: shrink down into the edge tab's spot while fading, so the
+                    // bubble reads as turning back into the tab.
                     .transition(.asymmetric(insertion: .scale(scale: 0.86).combined(with: .opacity),
-                                            removal: .scale(scale: 0.96).combined(with: .opacity)))
+                                            removal: .scale(scale: 0.3, anchor: .bottom).combined(with: .opacity)))
             }
         }
         .frame(maxWidth: .infinity)
@@ -202,14 +204,15 @@ final class Overlay {
         model.phase = .hidden
         model.live = ""
         model.level = 0
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) { [weak self] in
+        // Hand off to the edge tab while the bubble is landing: one motion
+        // instead of a gap and a pop.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            guard let self, self.model.phase == .hidden else { return }
+            self.onHidden?()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
             guard let self, self.model.phase == .hidden else { return }
             self.panel.orderOut(nil)
-            // The window server finishes the fade a beat after orderOut.
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-                guard let self, self.model.phase == .hidden else { return }
-                self.onHidden?()
-            }
         }
     }
 }

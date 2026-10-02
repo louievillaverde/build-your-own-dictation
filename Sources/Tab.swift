@@ -238,7 +238,18 @@ final class EdgeTab {
     }
 
     func setRecording(_ on: Bool) {
+        let returning = hiddenForRecording && !on
         hiddenForRecording = on
+        if returning && Prefs.shared.showTab {
+            panel.alphaValue = 0
+            refresh()
+            NSAnimationContext.runAnimationGroup { ctx in
+                ctx.duration = 0.3
+                ctx.timingFunction = CAMediaTimingFunction(name: .easeOut)
+                panel.animator().alphaValue = 1
+            }
+            return
+        }
         refresh()
     }
 
