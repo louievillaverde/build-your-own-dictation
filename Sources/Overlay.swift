@@ -194,12 +194,22 @@ final class Overlay {
         }
     }
 
+    /// Called once the bubble has fully faded out, so the edge tab can come back
+    /// without appearing under a still-visible bubble.
+    var onHidden: (() -> Void)?
+
     func hide() {
         model.phase = .hidden
         model.live = ""
         model.level = 0
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) { [weak self] in
-            if self?.model.phase == .hidden { self?.panel.orderOut(nil) }
+            guard let self, self.model.phase == .hidden else { return }
+            self.panel.orderOut(nil)
+            // The window server finishes the fade a beat after orderOut.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                guard let self, self.model.phase == .hidden else { return }
+                self.onHidden?()
+            }
         }
     }
 }

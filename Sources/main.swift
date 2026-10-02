@@ -95,6 +95,7 @@ final class Controller: NSObject {
             return self.isRecording || self.busy || NSWorkspace.shared.frontmostApplication?.bundleIdentifier == Bundle.main.bundleIdentifier
         }
         hint.start()
+        overlay.onHidden = { [weak self] in self?.tab.setRecording(false) }
         tab.model.onHistory = { [weak self] in self?.history.show() }
         tab.model.onPasteLast = { [weak self] in self?.pasteLast() }
         tab.model.onSettings = { [weak self] in self?.settings.show() }
@@ -154,6 +155,7 @@ final class Controller: NSObject {
         overlay.model.caption = mode == .fixInstruction ? "How should I change it?" : nil
         overlay.show(.listening)
         tab.setRecording(true)
+        tab.notifyUnpasted(false)   // a new recording clears the "waiting to paste" glow
         statusItem.button?.image = symbol("waveform.circle.fill")
         tickTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated {
@@ -178,7 +180,7 @@ final class Controller: NSObject {
 
     private func teardown() {
         recorder = nil
-        tab.setRecording(false)
+        // The tab stays away until the bubble is gone (overlay.onHidden).
         tickTimer?.invalidate(); tickTimer = nil
         statusItem.button?.image = symbol("waveform")
     }

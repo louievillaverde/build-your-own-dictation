@@ -82,12 +82,13 @@ struct EdgeTabView: View {
     }
 
     var handle: some View {
+        // A dictation waiting to be pasted: the tab glows faintly orange until
+        // it's pasted or a new one is recorded.
         Capsule()
             .fill(Color.black.opacity(0.72))
-            .overlay(Capsule().strokeBorder(Color.white.opacity(0.22), lineWidth: 1))
-            .overlay(alignment: m.vertical ? .top : .trailing) {
-                if m.unpasted { Circle().fill(Color.orange).frame(width: 7, height: 7).offset(x: m.vertical ? 0 : 3, y: m.vertical ? -3 : 0) }
-            }
+            .overlay(Capsule().strokeBorder(m.unpasted ? Color.orange.opacity(0.65) : Color.white.opacity(0.22), lineWidth: 1))
+            .shadow(color: m.unpasted ? Color.orange.opacity(0.55) : .clear, radius: m.unpasted ? 6 : 0)
+            .animation(.easeInOut(duration: 0.4), value: m.unpasted)
             .frame(width: m.vertical ? collapsedThickness : collapsedLength,
                    height: m.vertical ? collapsedLength : collapsedThickness)
             .offset(inward)
@@ -151,9 +152,8 @@ struct IconButton: View {
                         .overlay(Circle().strokeBorder(Color.white.opacity(hovered ? 0.35 : 0.18), lineWidth: 1))
                         .shadow(color: .black.opacity(0.35), radius: 4, y: 2)
                 )
-                .overlay(alignment: .topTrailing) {
-                    if badge { Circle().fill(Color.orange).frame(width: 8, height: 8).offset(x: 1, y: -1) }
-                }
+                .overlay(Circle().strokeBorder(Color.orange.opacity(badge ? 0.7 : 0), lineWidth: 1.5))
+                .shadow(color: badge ? Color.orange.opacity(0.5) : .clear, radius: badge ? 5 : 0)
                 .scaleEffect(hovered ? 1.08 : 1)
         }
         .buttonStyle(.plain)
